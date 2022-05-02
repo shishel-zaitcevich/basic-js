@@ -17,35 +17,23 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
+
 function dateSample(sampleActivity) {
   const sampleActivityNum = parseInt(sampleActivity);
-  if (isNaN(sampleActivityNum) || typeof sampleActivity !== "string") {
+  if (typeof sampleActivity !== "string" || isNaN(sampleActivityNum)) {
     return false;
   }
+
+  if (sampleActivityNum <= 0) {
+    return false;
+  }
+
   let age =
-    (HALF_LIFE_PERIOD / 0.693) * Math.log(MODERN_ACTIVITY / sampleActivityNum);
+    (HALF_LIFE_PERIOD / 0.693) * Math.log(MODERN_ACTIVITY / sampleActivity);
   if (age <= 0) {
     return false;
   }
   return Math.ceil(age);
-}
-
-function dateSample(sampleActivity) {
-  const parsed = parseInt(sampleActivity);
-  if (typeof sampleActivity !== "string" || isNaN(parsed)) {
-    return false;
-  }
-
-  if (parsed <= 0) {
-    return false;
-  }
-
-  let t =
-    (HALF_LIFE_PERIOD / 0.693) * Math.log(MODERN_ACTIVITY / sampleActivity);
-  if (t <= 0) {
-    return false;
-  }
-  return Math.ceil(t);
 }
 
 module.exports = {

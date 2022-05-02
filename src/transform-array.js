@@ -25,7 +25,7 @@ function transform(arr) {
     // console.log("i", i);
     // console.log("arr_i", array[i]);
     if (array[i] === "--discard-next") {
-      array.splice(i, 2, "", "");
+      array.splice(i, 2, "", ""); //пустая строка, чтобы не терялся порядок элементов в массиве
     } else if (array[i] === "--discard-prev") {
       if (i === 0) {
         array.splice(0, 1, "");
